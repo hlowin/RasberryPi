@@ -17,6 +17,8 @@ Qiitaの記事はOS Xを使用しているため、balenaEtcherを使用する�
   [RasberryPi公式サイト](https://www.raspberrypi.org/downloads/)から拾ってくる。
   - "Raspbian"の方をダウンロード。
   - 恐らく"Raspbian Stretch with desktop and recommended software"でよいと思われる。
-  
+6. .zipをEtcher上でロードさせて、ROM焼するドライブを選んでWriteする。
+7. ROM焼き中。
+  ![install02.png](./image/install02.png)
 
   
