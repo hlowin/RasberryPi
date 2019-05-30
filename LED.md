@@ -45,3 +45,9 @@ sudo pip install wiringpi2
 大体上記の記事と同じ内容だったため、内容の記載はパス。
 
 一先ず、記事内のサンプルコードを転送してビルドしてみる。
+
+```
+% gcc -c blink.c
+% gcc main.c blink.o -o ./blinkLED
+```
+
