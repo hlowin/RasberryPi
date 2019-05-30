@@ -70,6 +70,25 @@ git checkout led
 ```
 
 3. ホストの方でソースコードを作成。
-   
+   下記通りに"main.c"を作成。
+   ```c
+   #include <stdio.h>
 
+    int main()
+    {
+      printf("Hello, World!\n");
+    }
+   ```
 
+4. Rasberry Piの方でPULLする。
+   ```
+   git pull
+   ```
+
+5. ビルドする。
+   ```
+   gcc -o main main.c
+   ```
+
+6. 実行。
+   ![jikkou01.png](./image/jikkou01.png)
