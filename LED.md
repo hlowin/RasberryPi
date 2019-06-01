@@ -58,5 +58,3 @@ sudo pip install wiringpi2
 ```
 Pi 2とZeroでペリフェラルのベースアドレスが異なるぽい。
 [このブログ](http://hp.vector.co.jp/authors/VA011973/raspberrypi_1.htm)を参考。
-
-

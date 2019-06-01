@@ -29,17 +29,17 @@ Qiitaの記事はOS Xを使用しているため、balenaEtcherを使用する�
 
 8. 完了したら、ドライブを抜いて再度刺す。
 
-9. bootドライブが出てくるので、直下に"ssh"というからファイルを作成。
+9. bootドライブが出てくるので、直下に"ssh"という空ファイルを作成。
   ![install03.png](./image/install03.png)
 
 10. cmdline.txt修正
-  - 下記のようにやっておく。
+  - 下記の様にやっておく。
   
 > bootドライブのcmdline.txtに "modules-load=dwc2,g_ether" を追加する。
 > rootwaitとquietの間に挿入。
 
 11. config.txt修正
-  - 下記のようにやっておく。
+  - 下記の様にやっておく。
 
 > bootドライブのconfig.txtの末尾に "dtoverlay=dwc2" を追加。
 
