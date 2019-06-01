@@ -51,3 +51,12 @@ sudo pip install wiringpi2
 % gcc main.c blink.o -o ./blinkLED
 ```
 
+"blink.h"の中身について一行変更する。
+```c
+// #define PERIPHERAL_BASE 0x3F000000 // For Rasberry Pi 2
+#define PERIPHERAL_BASE 0x20000000    // For Rasberry Pi Zero
+```
+Pi 2とZeroでペリフェラルのベースアドレスが異なるぽい。
+[このブログ](http://hp.vector.co.jp/authors/VA011973/raspberrypi_1.htm)を参考。
+
+

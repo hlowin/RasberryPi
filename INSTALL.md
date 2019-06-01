@@ -19,7 +19,8 @@ Qiitaの記事はOS Xを使用しているため、balenaEtcherを使用する�
 5. OSイメージを拾ってくる。
   [RasberryPi公式サイト](https://www.raspberrypi.org/downloads/)から拾ってくる。
   - "Raspbian"の方をダウンロード。
-  - 恐らく"Raspbian Stretch with desktop and recommended software"でよいと思われる。
+  - ~~恐らく"Raspbian Stretch with desktop and recommended software"でよいと思われる。~~
+    "Raspbian Stretch Lite"の方がよいかも…
 
 6. .zipをEtcher上でロードさせて、ROM焼するドライブを選んでWriteする。
 

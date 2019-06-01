@@ -4,7 +4,8 @@
 #include <unistd.h>
 
 #define BLOCK_SIZE      4 * 1024
-#define PERIPHERAL_BASE 0x3F000000
+// #define PERIPHERAL_BASE 0x3F000000 // For Rasberry Pi 2
+#define PERIPHERAL_BASE 0x20000000    // For Rasberry Pi Zero
 #define GPIO_BASE       PERIPHERAL_BASE + 0x00200000
 
 typedef struct {
