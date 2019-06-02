@@ -1,11 +1,9 @@
 #include "blink.h"
 
 int MapGPIO(rpi_gpio *gpio) {
-  // gpio->memory_fd = open("/dev/mem", O_RDWR|O_SYNC);
   gpio->memory_fd = open("/dev/gpiomem", O_RDWR|O_SYNC);
 
   if(gpio->memory_fd < 0) {
-    // perror("Failed to open /dev/mem, try change permission.");
     perror("Failed to open /dev/gpiomem, try change permission.");
 
     return 1;
@@ -45,7 +43,6 @@ bool GpioIO(rpi_gpio *gpio, int gpio_num, bool io, bool state) {
   if (io == GPIO_IN) {
     *(gpio->addr + (gpio_num / 10)) = 0x00000000 << ((gpio_num % 10) * 3);
   }
-
 
   if (io == GPIO_OUT) {
     *(gpio->addr + (gpio_num / 10)) = 0x00000001 << ((gpio_num % 10) * 3);

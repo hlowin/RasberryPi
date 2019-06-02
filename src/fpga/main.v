@@ -12,7 +12,7 @@
 // out_led[5]  : PIN_F3
 // out_led[6]  : PIN_B1
 // out_led[7]  : PIN_L3
-// out_dlclk   : PIN_N12
+// out_dip     : PIN_N12
 // out_seg[0]  : PIN_T10
 // out_seg[1]  : PIN_P11
 // out_seg[2]  : PIN_N9
@@ -30,14 +30,13 @@ module main(
   input  wire       in_clk,
   input  wire       in_rst,
   input  wire       in_func,
-  output wire       out_dlclk,
+  output wire       out_dip,
   output wire [7:0] out_seg,
   output wire [7:0] out_led,
   output wire       out_func
 );
 
-wire dlclk;
-assign out_dlclk = in_clk;
+assign out_dip = in_clk;
 
 wire [7:0] count;
 assign out_led = count;
@@ -45,9 +44,8 @@ assign out_led = count;
 wire [7:0] seg;
 assign out_seg = seg;
 
-assign in_func = out_func;
+assign out_func = in_func;
 
-// dlclock dlclock0(.clk(in_clk), .dlclk(dlclk));
 counter counter0(.clk(in_clk), .rst(in_rst), .count(count));
 seg seg0(.count(count), .seg(seg));
 
