@@ -34,42 +34,29 @@ void UnmapGPIO(rpi_gpio *gpio) {
   close(gpio->memory_fd);
 }
 
-void BlinkLED(rpi_gpio *gpio) {
-  int n = 5;
+// rpi_gpio *gpio : register mapped gpio
+// int gpio_num   : GPIO number(0-26)
+// bool io        : configure GPIO IN/OUT(GPIO_IN/GPIO_OUT)
+// bool state     : If configure GPIO_OUT then set ON/OFF(GPIO_ON/GPIO_OFF)
+bool GpioIO(rpi_gpio *gpio, int gpio_num, bool io, bool state) {
 
-  while(n -= 1) {
-    GpioIO(gpio, (int)21, GPIO_OUT, GPIO_ON);
-    usleep(500 * 1000);
-    GpioIO(gpio, (int)21, GPIO_OUT, GPIO_OFF);
-    usleep(500 * 1000);
-  }
+  bool read = GPIO_OFF;
 
-  GpioIO(gpio, (int)21, GPIO_IN, GPIO_OFF);
-
-#if 0
-  *(gpio->addr + 2)  = 0x00000200;
-
-  while(n -= 1) {
-    *(gpio->addr + 7)  = 0x00800000;
-    usleep(500 * 1000);
-    *(gpio->addr + 10) = 0x00800000;
-    usleep(500 * 1000);
-  }
-
-  *(gpio->addr + 2)  = 0x00000000;
-#endif
-}
-
-void GpioIO(rpi_gpio *gpio, int gpio_num, bool io, bool state) {
-  if (io == GPIO_IN)
+  if (io == GPIO_IN) {
     *(gpio->addr + (gpio_num / 10)) = 0x00000000 << ((gpio_num % 10) * 3);
-  if (io == GPIO_OUT)
-    *(gpio->addr + (gpio_num / 10)) = 0x00000001 << ((gpio_num % 10) * 3);
+  }
+
 
   if (io == GPIO_OUT) {
+    *(gpio->addr + (gpio_num / 10)) = 0x00000001 << ((gpio_num % 10) * 3);
+
     if (state == GPIO_ON)
       *(gpio->addr + (7 + gpio_num / 32)) = 0x00000001 << (gpio_num % 32);
     if (state == GPIO_OFF)
       *(gpio->addr + (10 + gpio_num / 32)) = 0x00000001 << (gpio_num % 32);
   }
+
+  read = (bool)((*(gpio->addr + (13 + gpio_num / 32)) >> (gpio_num % 32)) & 0x00000001 );
+
+  return read;
 }

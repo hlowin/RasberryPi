@@ -10,11 +10,11 @@
 #define PERIPHERAL_BASE 0x20000000    // For Rasberry Pi Zero
 #define GPIO_BASE       PERIPHERAL_BASE + 0x00200000
 
-#define GPIO_IN  1
-#define GPIO_OUT 0
+#define GPIO_IN  (bool)1
+#define GPIO_OUT (bool)0
 
-#define GPIO_ON  1
-#define GPIO_OFF 0
+#define GPIO_ON  (bool)1
+#define GPIO_OFF (bool)0
 
 typedef struct {
   unsigned long         gpio_base;
@@ -25,5 +25,5 @@ typedef struct {
 
 int MapGPIO(rpi_gpio *gpio);
 void UnmapGPIO(rpi_gpio *gpio);
-void BlinkLED(rpi_gpio *gpio);
-void GpioIO(rpi_gpio *gpio, int gpio_num, bool io, bool state);
+// void BlinkLED(rpi_gpio *gpio);
+bool GpioIO(rpi_gpio *gpio, int gpio_num, bool io, bool state);

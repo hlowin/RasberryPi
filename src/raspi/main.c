@@ -4,7 +4,7 @@
 
 int main()
 {
-  // printf("Hello, World!\n");
+  printf("Process start.\n");
 
   rpi_gpio gpio = {GPIO_BASE};
   int map_status;
@@ -15,7 +15,23 @@ int main()
     return map_status;
   }
 
-  BlinkLED(&gpio);
+  int n = 5;
+
+  while(n -= 1) {
+    (void)GpioIO(&gpio, (int)21, GPIO_OUT, GPIO_ON);
+    usleep(500 * 1000);
+    (void)GpioIO(&gpio, (int)21, GPIO_OUT, GPIO_OFF);
+    usleep(500 * 1000);
+
+    printf("gpio level = %d\n", (int)GpioIO(&gpio, (int)21, GPIO_OUT, GPIO_ON));
+  }
+
+  (void)GpioIO(&gpio, (int)21, GPIO_IN, GPIO_OFF);
+
+  // BlinkLED(&gpio);
   UnmapGPIO(&gpio);
+
+  printf("Process end.\n");
+  
   return 0;
 }
