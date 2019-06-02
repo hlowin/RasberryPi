@@ -8,11 +8,11 @@
 #define PERIPHERAL_BASE 0x20000000    // For Rasberry Pi Zero
 #define GPIO_BASE       PERIPHERAL_BASE + 0x00200000
 
-#define GPIO_IN  true
-#define GPIO_OUT false
+#define GPIO_IN  (bool)1
+#define GPIO_OUT (bool)0
 
-#define GPIO_ON  true
-#define GPIO_OFF false
+#define GPIO_ON  (bool)1
+#define GPIO_OFF (bool)0
 
 typedef struct {
   unsigned long         gpio_base;
