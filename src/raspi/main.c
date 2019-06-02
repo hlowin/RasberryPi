@@ -4,7 +4,7 @@
 
 int main()
 {
-  printf("Hello, World!\n");
+  // printf("Hello, World!\n");
 
   rpi_gpio gpio = {GPIO_BASE};
   int map_status;
