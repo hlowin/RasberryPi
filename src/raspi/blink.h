@@ -3,16 +3,18 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
+#define bool _Bool
+
 #define BLOCK_SIZE      4 * 1024
 // #define PERIPHERAL_BASE 0x3F000000 // For Rasberry Pi 2
 #define PERIPHERAL_BASE 0x20000000    // For Rasberry Pi Zero
 #define GPIO_BASE       PERIPHERAL_BASE + 0x00200000
 
-#define GPIO_IN  (bool)1
-#define GPIO_OUT (bool)0
+#define GPIO_IN  1
+#define GPIO_OUT 0
 
-#define GPIO_ON  (bool)1
-#define GPIO_OFF (bool)0
+#define GPIO_ON  1
+#define GPIO_OFF 0
 
 typedef struct {
   unsigned long         gpio_base;
