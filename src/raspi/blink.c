@@ -38,13 +38,13 @@ void BlinkLED(rpi_gpio *gpio) {
   int n = 5;
 
   while(n -= 1) {
-    GpioIO(*gpio, (int)21, GPIO_OUT, GPIO_ON);
+    GpioIO(&gpio, (int)21, GPIO_OUT, GPIO_ON);
     usleep(500 * 1000);
-    GpioIO(*gpio, (int)21, GPIO_OUT, GPIO_OFF);
+    GpioIO(&gpio, (int)21, GPIO_OUT, GPIO_OFF);
     usleep(500 * 1000);
   }
 
-  GpioIO(*gpio, (int)21, GPIO_IN, GPIO_OFF);
+  GpioIO(&gpio, (int)21, GPIO_IN, GPIO_OFF);
 
 #if 0
   *(gpio->addr + 2)  = 0x00000200;
