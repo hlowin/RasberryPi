@@ -5,4 +5,4 @@ blink.o: main.o
 blink.o: blink.c
 		gcc -c blink.c
 clean:
-		rm -f main.o blink.o
+		rm -f main.o blink.o main
