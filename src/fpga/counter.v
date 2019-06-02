@@ -15,9 +15,8 @@ always @(posedge clk or negedge rst) begin
   if(rst == 1'b0) begin
     count <= 8'h00;
   end
-
-  if(clk == 1'b1) begin
-    if(count == 8'h0F) begin
+  else if(clk == 1'b1) begin
+    if(count >= 8'h0F) begin
       count <= 8'h00;
     end
     else begin

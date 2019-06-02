@@ -22,23 +22,28 @@
 // out_seg[6]  : PIN_R14
 // out_seg[7]  : PIN_N16
 
+// Raspberry Pi
+// GPIO21 <-> PIN_D3 
+
 module main(
   input  wire       in_clk,
   input  wire       in_rst,
   output wire       out_dlclk,
-  output wire [7:0] out_seg
+  output wire [7:0] out_seg,
+  output wire [7:0] out_led
 );
 
 wire dlclk;
-assign out_dlclk = dlclk;
+assign out_dlclk = in_clk;
 
 wire [7:0] count;
+assign out_led = count;
 
 wire [7:0] seg;
-assign out_seg = seg; 
+assign out_seg = seg;
 
-dlclock dlclock0(.clk(in_clk), .dlclk(dlclk));
-counter counter0(.clk(dlclk), .rst(in_rst), .count(count));
+// dlclock dlclock0(.clk(in_clk), .dlclk(dlclk));
+counter counter0(.clk(in_clk), .rst(in_rst), .count(count));
 seg seg0(.count(count), .seg(seg));
 
 endmodule

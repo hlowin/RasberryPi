@@ -25,6 +25,7 @@ always @(count) begin
     8'h0E   : seg <= ~8'h79;
     8'h0F   : seg <= ~8'h71;
     default : seg <= ~8'h00;
+    // default : seg <= ~8'h77;
   endcase
 end
 
