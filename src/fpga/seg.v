@@ -1,13 +1,13 @@
-// seg : convert counter value to 7segment led display
+// seg : convert data value to 7segment led display
 
 module seg(
-           input wire [7:0] count,
+           input wire [7:0] data,
            output reg [7:0] seg
           );
 
-always @(count) begin
+always @(data) begin
 
-  case(count)
+  case(data)
     8'h00   : seg <= ~8'h3F;
     8'h01   : seg <= ~8'h06;
     8'h02   : seg <= ~8'h5B;

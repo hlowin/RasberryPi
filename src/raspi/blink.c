@@ -32,6 +32,9 @@ void UnmapGPIO(rpi_gpio *gpio) {
   close(gpio->memory_fd);
 }
 
+static int outstate[2];
+static int iostate[6];
+
 // rpi_gpio *gpio : register mapped gpio
 // int gpio_num   : GPIO number(0-26)
 // bool io        : configure GPIO IN/OUT(GPIO_IN/GPIO_OUT)
@@ -40,6 +43,24 @@ bool GpioIO(rpi_gpio *gpio, int gpio_num, bool io, bool state) {
 
   bool read = GPIO_OFF;
 
+  if (io == GPIO_IN)
+    iostate[gpio_num / 10] &= ~((0x00000001) << ((gpio_num % 10) * 3));
+  else if (io == GPIO_OUT)
+    iostate[gpio_num / 10] |= (0x00000001 << ((gpio_num % 10) * 3));
+
+  *(gpio->addr + (gpio_num / 10)) = iostate[gpio_num / 10];
+
+
+  if (state == GPIO_ON) {
+    outstate[gpio_num / 32] |= (0x00000001 << (gpio_num % 32));
+    *(gpio->addr + (7 + gpio_num / 32)) = outstate[gpio_num / 32];
+  }
+  else if (state == GPIO_OFF) {
+    outstate[gpio_num / 32] &= ~(0x00000001 << (gpio_num % 32));
+    *(gpio->addr + (10 + gpio_num / 32)) = ~outstate[gpio_num / 32];
+  }
+
+#if 0
   if (io == GPIO_IN) {
     *(gpio->addr + (gpio_num / 10)) = 0x00000000 << ((gpio_num % 10) * 3);
   }
@@ -52,6 +73,7 @@ bool GpioIO(rpi_gpio *gpio, int gpio_num, bool io, bool state) {
     if (state == GPIO_OFF)
       *(gpio->addr + (10 + gpio_num / 32)) = 0x00000001 << (gpio_num % 32);
   }
+#endif
 
   read = (bool)((*(gpio->addr + (13 + gpio_num / 32)) >> (gpio_num % 32)) & 0x00000001 );
 

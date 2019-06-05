@@ -23,30 +23,35 @@
 // out_seg[7]  : PIN_N16
 
 // Raspberry Pi
-// GPIO21 <-> (GPIO_00)PIN_D3
-// GPIO20 <-> (GPIO_01)PIN_C3
+// out_func(GPIO_029:PIN_B11) <-> GPIO02
+
 
 module main(
-  input  wire       in_clk,
+//  input  wire       in_clk,
   input  wire       in_rst,
   input  wire       in_func,
-  output wire       out_dip,
+  input  wire [3:0] in_data,
+//  output wire       out_dip,
   output wire [7:0] out_seg,
   output wire [7:0] out_led,
   output wire       out_func
 );
 
-assign out_dip = in_clk;
+// assign out_dip = in_clk;
 
-wire [7:0] count;
-assign out_led = count;
+// wire [7:0] count;
+// assign out_led = count;
 
 wire [7:0] seg;
 assign out_seg = seg;
 
 assign out_func = in_func;
 
-counter counter0(.clk(in_clk), .rst(in_rst), .count(count));
-seg seg0(.count(count), .seg(seg));
+wire [7:0] data;
+assign data = 8'h00 + in_data; 
+assign out_led = data;
+
+// counter counter0(.clk(in_clk), .rst(in_rst), .count(count));
+seg seg0(.data(data), .seg(seg));
 
 endmodule
