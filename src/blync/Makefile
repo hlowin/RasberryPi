@@ -51,6 +51,7 @@ ifeq ($(target),raspberry)
 endif
 
 SOURCES=main.cpp \
+				blink.cpp	\
 	../src/utility/BlynkDebug.cpp \
 	../src/utility/BlynkHandlers.cpp \
 	../src/utility/BlynkTimer.cpp
@@ -63,7 +64,7 @@ all: $(SOURCES) $(EXECUTABLE)
 clean:
 	-rm $(OBJECTS) $(EXECUTABLE)
 
-$(EXECUTABLE): $(OBJECTS) 
+$(EXECUTABLE): $(OBJECTS)  
 	$(CXX) $(OBJECTS) $(LDFLAGS) -o $@
 
 .cpp.o:
