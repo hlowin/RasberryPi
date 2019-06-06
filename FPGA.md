@@ -28,3 +28,30 @@ DE-0 nanoについては5bit幅のデータを受け取り、表示系を駆動�
   - Available devices : EP4CE22F17C6
 
 8. あとはデフォルトでよいはず。
+
+
+## FlashROMへ焼く手順
+- [このブログ](https://ehbtj.com/electronics/memo-de0-nano/)を参考。
+
+1. [File]->[Convert Programming Files...]を選択。
+
+2. [Output programming file]->[Programming file type]は[JTAG Indirect Configuration File (.jic)]を選択。
+
+3. [Configuration device]は[EPCS16]を選択。
+
+4. [Input files to convert]->[Flash Loader]を選択。
+
+5. [Add Device...]を選択し、[Cyclone Ⅳ E]->[EP4CE22]を選択->[OK]。
+
+6. [SOF Data]を選択し[Add File...]を選択 -> .sofファイルを選択。
+
+7. [Generate]を選択。
+
+8. Programmerを選択。
+
+9. .sofファイルの項目を右クリックし[Change File]を選択。
+   ->選択ウィンドウが出るので、先ほど作成した.jicファイルを選択。
+
+10. EPCS16を選択し、ProgramとVerifyにチェックを入れる。
+
+11. [Start]を選択。
