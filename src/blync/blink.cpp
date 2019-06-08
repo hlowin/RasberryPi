@@ -60,21 +60,6 @@ bool GpioIO(rpi_gpio *gpio, int gpio_num, bool io, bool state) {
     *(gpio->addr + (10 + gpio_num / 32)) = ~outstate[gpio_num / 32];
   }
 
-#if 0
-  if (io == GPIO_IN) {
-    *(gpio->addr + (gpio_num / 10)) = 0x00000000 << ((gpio_num % 10) * 3);
-  }
-
-  if (io == GPIO_OUT) {
-    *(gpio->addr + (gpio_num / 10)) = 0x00000001 << ((gpio_num % 10) * 3);
-
-    if (state == GPIO_ON)
-      *(gpio->addr + (7 + gpio_num / 32)) = 0x00000001 << (gpio_num % 32);
-    if (state == GPIO_OFF)
-      *(gpio->addr + (10 + gpio_num / 32)) = 0x00000001 << (gpio_num % 32);
-  }
-#endif
-
   read = (bool)((*(gpio->addr + (13 + gpio_num / 32)) >> (gpio_num % 32)) & 0x00000001 );
 
   return read;

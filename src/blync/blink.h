@@ -25,5 +25,4 @@ typedef struct {
 
 int MapGPIO(rpi_gpio *gpio);
 void UnmapGPIO(rpi_gpio *gpio);
-// void BlinkLED(rpi_gpio *gpio);
 bool GpioIO(rpi_gpio *gpio, int gpio_num, bool io, bool state);
